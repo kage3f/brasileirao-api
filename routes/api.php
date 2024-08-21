@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BrasileiraoController;
+use App\Http\Controllers\BrasileiraoRodadasController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,5 @@ use App\Http\Controllers\BrasileiraoController;
 */
 
 Route::get('/brasileirao/classificacao', [BrasileiraoController::class, 'getClassificacao']);
+
+Route::get('/brasileirao/rodada', [BrasileiraoRodadasController::class, 'getRodada']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\BrasileiraoRodadasService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BrasileiraoRodadasController extends Controller
 {
@@ -17,19 +18,16 @@ class BrasileiraoRodadasController extends Controller
 
     public function getRodada(Request $request): JsonResponse
     {
-        $rodada = $request->input('rodada', 1);
-
         try {
-            $data = $this->rodadasService->getRodada($rodada);
-            return response()->json([
-                'success' => true,
-                'data' => $data,
-            ]);
+            $rodadaNumero = $request->input('rodada');
+            $data = $this->rodadasService->getRodada($rodadaNumero);
+            return response()->json(['success' => true, 'data' => $data]);
         } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
+            Log::error('Erro ao obter rodada do Brasileirão', [
                 'message' => $e->getMessage(),
-            ], 404);
+                'trace' => $e->getTraceAsString()
+            ]);
+            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
         }
     }
 }

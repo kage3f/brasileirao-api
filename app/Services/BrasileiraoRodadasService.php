@@ -53,9 +53,7 @@ class BrasileiraoRodadasService
                 $jogo = [
                     'date' => trim($date),
                     'home_team' => $homeTeamInfo['name'],
-                    'home_team_crest' => $homeTeamInfo['crest'],
                     'away_team' => $awayTeamInfo['name'],
-                    'away_team_crest' => $awayTeamInfo['crest'],
                     'home_score' => $homeScore,
                     'away_score' => $awayScore,
                 ];

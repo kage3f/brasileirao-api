@@ -18,7 +18,7 @@ class BrasileiraoScraperService
             
             Log::info('Página acessada com sucesso');
 
-            $times = $crawler->filter('table.data-table.name tbody tr')->each(function (Crawler $node, $i) use ($crawler) {
+            $times = $crawler->filter('table.data-table.name tbody tr')->slice(0, 20)->each(function (Crawler $node, $i) use ($crawler) {
                 $posicao = $node->filter('.position')->text();
                 $nome = $node->filter('.name div.visible-sm')->text();
                 $sigla = $node->filter('.name div.visible-xs')->text();
